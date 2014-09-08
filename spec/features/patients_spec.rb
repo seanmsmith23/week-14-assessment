@@ -35,7 +35,7 @@ feature "Patients" do
     fill_in "prescription[dosage]", with: "5 mgs"
     fill_in "prescription[schedule]", with: "2 days"
     fill_in "prescription[start]", with: "09/26/2014"
-    fill_in "prescription[end]", with: "09/27/2014"
+    fill_in "prescription[finish]", with: "09/27/2014"
 
     click_button "Create Prescription"
 
@@ -61,7 +61,7 @@ feature "Patients" do
     expect(page).to have_content("Dosage can't be blank")
     expect(page).to have_content("Schedule can't be blank")
     expect(page).to have_content("Start can't be blank")
-    expect(page).to have_content("End can't be blank")
+    expect(page).to have_content("Finish can't be blank")
   end
 
   scenario "Dosage prescription creation must begin with a number" do
@@ -77,7 +77,7 @@ feature "Patients" do
     fill_in "prescription[dosage]", with: "five mgs"
     fill_in "prescription[schedule]", with: "2 days"
     fill_in "prescription[start]", with: "09/26/2014"
-    fill_in "prescription[end]", with: "09/27/2014"
+    fill_in "prescription[finish]", with: "09/27/2014"
 
     click_button "Create Prescription"
 
@@ -97,7 +97,7 @@ feature "Patients" do
     fill_in "prescription[dosage]", with: "5 mgs"
     fill_in "prescription[schedule]", with: "2 days"
     fill_in "prescription[start]", with: "09/26/2014"
-    fill_in "prescription[end]", with: "09/27/2014"
+    fill_in "prescription[finish]", with: "09/27/2014"
 
     click_button "Create Prescription"
 

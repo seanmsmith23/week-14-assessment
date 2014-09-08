@@ -8,7 +8,7 @@ class PrescriptionsController < ApplicationController
   def create
     if params[:prescription][:start] != "" && params[:prescription][:end] != ""
       start = Date.strptime(params[:prescription][:start], "%m/%d/%Y")
-      finish = Date.strptime(params[:prescription][:end], "%m/%d/%Y")
+      finish = Date.strptime(params[:prescription][:finish], "%m/%d/%Y")
     end
 
     @prescription = Prescription.create(
@@ -16,7 +16,7 @@ class PrescriptionsController < ApplicationController
       schedule: params[:prescription][:schedule],
       dosage: params[:prescription][:dosage],
       start: start,
-      end: finish,
+      finish: finish,
       patient_id: params[:patient_id],
       user_id: current_user.id
     )
