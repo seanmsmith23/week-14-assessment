@@ -64,6 +64,26 @@ feature "Patients" do
     expect(page).to have_content("End can't be blank")
   end
 
+  scenario "Dosage prescription creation must begin with a number" do
+    user = create_user
+    patient = create_patient
+    medication = create_medication
+    login(user)
+    click_link "#{patient.first_name} #{patient.last_name}"
+
+    click_link "Add Prescription"
+
+    select "Tylenol", from: "prescription[medication_id]"
+    fill_in "prescription[dosage]", with: "five mgs"
+    fill_in "prescription[schedule]", with: "2 days"
+    fill_in "prescription[start]", with: "09/26/2014"
+    fill_in "prescription[end]", with: "09/27/2014"
+
+    click_button "Create Prescription"
+
+    expect(page).to have_content ("Dosage must begin with a number")
+  end
+
   scenario "Viewing med show page displays info on all prescrips written for that med" do
     user = create_user
     patient = create_patient
