@@ -20,7 +20,7 @@
   <% if @patient.prescriptions %>
     <% @patient.prescriptions.each do |presc| %>
       <tr>
-        <td><%= presc.medication %></td>
+        <td><%= presc.medication.name %></td>
         <td><%= presc.dosage %> every <%= presc.schedule %></td>
         <td><%= presc.start %> - <%= presc.end %></td>
       </tr>

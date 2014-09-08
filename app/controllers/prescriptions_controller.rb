@@ -17,7 +17,8 @@ class PrescriptionsController < ApplicationController
       dosage: params[:prescription][:dosage],
       start: start,
       end: finish,
-      patient_id: params[:patient_id]
+      patient_id: params[:patient_id],
+      user_id: current_user.id
     )
 
     if @prescription.save

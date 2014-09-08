@@ -10,21 +10,23 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Medication</th>
+    <th>Patient</th>
     <th>Dosage/Schedule</th>
     <th>Dates</th>
   </tr>
   </thead>
   <tbody>
-  <% if @patient.prescriptions %>
-    <% @patient.prescriptions.each do |presc| %>
-      <tr>
-        <td><%= presc.medication %></td>
-        <td><%= presc.dosage %> every <%= presc.schedule %></td>
-        <td><%= presc.start %> - <%= presc.end %></td>
-      </tr>
+  <% if @medication.prescriptions %>
+    <% @medication.prescriptions.each do |prescrip| %>
+        <% if prescrip.medication.id == @medication.id %>
+          <tr>
+            <td><%= full_name(prescrip.patient) %></td>
+            <td><%= prescrip.dosage %> every <%= prescrip.schedule %></td>
+            <td><%= prescrip.start %> - <%= prescrip.end %></td>
+          </tr>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
 
   </tbody>
 </table>
