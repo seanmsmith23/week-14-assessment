@@ -12,7 +12,7 @@ class PrescriptionsController < ApplicationController
     end
 
     @prescription = Prescription.create(
-      medication: params[:prescription][:medication],
+      medication_id: params[:prescription][:medication_id],
       schedule: params[:prescription][:schedule],
       dosage: params[:prescription][:dosage],
       start: start,

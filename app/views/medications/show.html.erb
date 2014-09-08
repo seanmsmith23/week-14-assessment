@@ -1,0 +1,30 @@
+<h1><%= @medication.name %></h1>
+
+<div class="flash">
+  <%= flash[:alert] if flash[:alert] %>
+</div>
+
+<div class="prescrip-header">
+  <h2 class="prescrip">Prescriptions</h2>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Medication</th>
+    <th>Dosage/Schedule</th>
+    <th>Dates</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @patient.prescriptions %>
+    <% @patient.prescriptions.each do |presc| %>
+      <tr>
+        <td><%= presc.medication %></td>
+        <td><%= presc.dosage %> every <%= presc.schedule %></td>
+        <td><%= presc.start %> - <%= presc.end %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  </tbody>
+</table>
