@@ -13,6 +13,7 @@
     <th>Patient</th>
     <th>Dosage/Schedule</th>
     <th>Dates</th>
+    <th>Prescribed By</th>
   </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
             <td><%= full_name(prescrip.patient) %></td>
             <td><%= prescrip.dosage %> every <%= prescrip.schedule %></td>
             <td><%= prescrip.start %> - <%= prescrip.end %></td>
+            <td><%= prescrip.user.name %></td>
           </tr>
         <% end %>
       <% end %>
