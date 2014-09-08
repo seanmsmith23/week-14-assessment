@@ -110,4 +110,24 @@ feature "Patients" do
     expect(page).to have_content ("2014-09-26 - 2014-09-27")
   end
 
+  scenario "The finish date cannot be befor the end date" do
+    user = create_user
+    patient = create_patient
+    medication = create_medication
+    login(user)
+    click_link "#{patient.first_name} #{patient.last_name}"
+
+    click_link "Add Prescription"
+
+    select "Tylenol", from: "prescription[medication_id]"
+    fill_in "prescription[dosage]", with: "5 mgs"
+    fill_in "prescription[schedule]", with: "2 days"
+    fill_in "prescription[start]", with: "09/27/2014"
+    fill_in "prescription[finish]", with: "09/26/2014"
+
+    click_button "Create Prescription"
+
+    expect(page).to have_content("End date must be after the start date")
+  end
+
 end
