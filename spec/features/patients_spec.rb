@@ -46,4 +46,22 @@ feature "Patients" do
 
   end
 
+  scenario "New prescip form validates presence" do
+    user = create_user
+    patient = create_patient
+    medication = create_medication
+    login(user)
+    click_link "#{patient.first_name} #{patient.last_name}"
+    click_link "Add Prescription"
+
+    click_button "Create Prescription"
+
+    expect(page).to have_content("Your prescription could not be saved")
+    expect(page).to have_content("Medication can't be blank")
+    expect(page).to have_content("Dosage can't be blank")
+    expect(page).to have_content("Schedule can't be blank")
+    expect(page).to have_content("Start can't be blank")
+    expect(page).to have_content("End can't be blank")
+  end
+
 end

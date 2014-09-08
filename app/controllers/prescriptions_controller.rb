@@ -6,8 +6,10 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
-    start = Date.strptime(params[:prescription][:start], "%m/%d/%Y")
-    finish = Date.strptime(params[:prescription][:end], "%m/%d/%Y")
+    if params[:prescription][:start] != "" && params[:prescription][:end] != ""
+      start = Date.strptime(params[:prescription][:start], "%m/%d/%Y")
+      finish = Date.strptime(params[:prescription][:end], "%m/%d/%Y")
+    end
 
     @prescription = Prescription.create(
       medication: params[:prescription][:medication],
@@ -20,6 +22,10 @@ class PrescriptionsController < ApplicationController
 
     if @prescription.save
       redirect_to patient_path(params[:patient_id]), alert: "Your prescription has been created"
+    else
+      @patient = Patient.find(params[:patient_id])
+      @medications = Medication.all
+      render 'new'
     end
   end
 end
